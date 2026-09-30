@@ -17,7 +17,7 @@ class CollaboratorController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'price' => ['required', 'numeric', 'gt:0', 'max:1000'],
+            'price' => ['required', 'numeric', 'decimal:0,2', 'gt:0', 'max:1000'],
         ]);
 
         return response()->json(Collaborator::create($data), 201);
@@ -27,7 +27,7 @@ class CollaboratorController extends Controller
     {
         $collaborator->update($request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'price' => ['required', 'numeric', 'gt:0', 'max:1000'],
+            'price' => ['required', 'numeric', 'decimal:0,2', 'gt:0', 'max:1000'],
         ]));
 
         return response()->json($collaborator->refresh());

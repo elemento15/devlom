@@ -16,7 +16,7 @@ class TaskCollaboratorController extends Controller
         $data = $request->validate([
             'task_id' => ['required', 'exists:tasks,id'],
             'collaborator_id' => ['required', 'exists:collaborators,id'],
-            'hours' => ['required', 'numeric', 'gt:0', 'max:120'],
+            'hours' => ['required', 'numeric', 'decimal:0,2', 'gt:0', 'max:120'],
         ]);
 
         $entry = DB::transaction(function () use ($data) {
