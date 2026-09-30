@@ -43,4 +43,4 @@ Route::prefix('api')->group(function () {
     });
 });
 
-Route::view('/{any}', 'app')->where('any', '^(?!api).*$');
+Route::view('/{any}', 'app')->where('any', '(?!api(?:/|$)).*');
