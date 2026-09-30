@@ -42,3 +42,5 @@ Route::prefix('api')->group(function () {
         Route::post('/time-entries', [TaskCollaboratorController::class, 'store']);
     });
 });
+
+Route::view('/{any}', 'app')->where('any', '^(?!api).*$');
