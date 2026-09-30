@@ -29,6 +29,15 @@ class ManagementWorkflowTest extends TestCase
         $this->postJson('/register')->assertNotFound();
     }
 
+    public function test_spa_routes_load_directly_without_matching_api_paths(): void
+    {
+        foreach (['/clients', '/collaborators', '/projects', '/tasks'] as $path) {
+            $this->get($path)->assertOk()->assertViewIs('app');
+        }
+
+        $this->get('/api/unknown')->assertNotFound();
+    }
+
     public function test_tasks_receive_project_folios_and_time_is_costed_and_locked_when_finished(): void
     {
         $this->seed();
